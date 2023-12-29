@@ -1,0 +1,68 @@
+{% extends 'app_tareas/base.html' %}
+
+{% block title %}TaskSmart | Registro{% endblock title %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/stilos.css'%}">
+<div class="container ">
+    <h1 class="text-center titulo">Formulario de Registro</h1>
+    <div class="row">
+        <div class="col-12 col-lg-6 ">
+            <form class="" method="POST" action="{% url 'registrarse' %}">
+                {% csrf_token %}
+                
+                <div class="form-group">
+                    <input type="text" name="{{form.first_name.name}}" class="form-control form-registro"  placeholder="Ingrese su nombre">
+                </div>
+                <div class="form-group">
+                    <input type="text"name="{{form.last_name.name}}" class="form-control form-registro"  placeholder="Ingrese su apellido">
+                </div>
+                <div class="form-group">
+                    <input type="email" name="{{form.email.name}}" class="form-control form-registro"  placeholder="ejemplo@ejemplo.com">
+                </div>
+                {% if form.username.errors %}
+                    <ul class="errorlist">
+                        {% for error in form.username.errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+                <div class="form-group">
+                    <input type="text" name="username" class="form-control form-registro"  placeholder="Ingrese un nombre de usuario">
+                </div>
+                {% if form.password1.errors or form.password2.errors %}
+                    <ul class="errorlist">
+                        {% for error in form.password1.errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                        {% for error in form.password2.errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+                    <div class="form-group ">
+                        <ul>
+                            <li class="titulo-li">La contraseña deve contener minimo 8 caracteres</li>
+                            <li class="titulo-li">Deve contener al menos una letra mayúscula</li>
+                            <li class="titulo-li">Deve contener números</li>
+                            <li class="titulo-li">Deve contener al menos un caracter especial</li>
+                        </ul>
+                        <input type="password" name="{{ form.password1.name }}" class="form-control form-registro" id="pass1" placeholder="Ingrese contraseña">
+                    </div>
+
+                    <div class="form-group">
+                        <input type="password"  name="{{ form.password2.name }}" class="form-control form-registro" id="pass2" placeholder="Repita contraseña">
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="showPasswordCheckbox">
+                            <label class="form-check-label" for="exampleChek1">Ver contraseña</label>
+                        </div>
+                    </div>
+                <button type="submit" class="btn btn-primary btn-registro w-100">Registrarse</button>
+            </form>
+        </div>
+        <div class="col-12 col-lg-6 img-registro-container">
+            <img class=" img-fluid mb-3  img-registro" src="{% static "imagenes/imagen2.png" %}" alt="">
+        </div>
+    </div>
+</div>
+{% endblock content %}

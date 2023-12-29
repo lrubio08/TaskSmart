@@ -1,0 +1,53 @@
+{% extends 'app_tareas/base.html' %}
+
+{% block title %}TaskSmart | Gestión De Tareas{% endblock title %}
+{% block content %}
+{% load static %}
+{% load my_filters %}
+<link rel="stylesheet" href="{% static 'css/stilos.css'%}">
+<div class="container">
+    
+    <h1 class="text-center  mt-4 mb-4 titulo">Gestionar Tareas</h1>
+    <div class="row">
+        {% for tarea in tareas %}
+            <div class="col-sm-12 col-md-6  mb-3  d-flex ">
+                <div class="card custom-card flex-fill  " style="background-color: {{ tarea.etiqueta.nombre|obtener_color_etiqueta }};">
+                    <ul class="list-group list-group-flush ">
+                        <div class="btn-group" role="group" aria-label="Basic example">
+                            <a href="{% url 'editar_tarea' tarea.id%}" class="btn btn-primary m-2">Editar Tarea</a>
+                            <a href="{% url 'completar_tarea' tarea.id%}" class="btn btn-success m-2">Completar Tarea</a>
+                        </div>
+                        <a href="{% url 'eliminar_tarea' tarea.id %}" class="btn btn-danger m-2" onclick="return confirm('¿Estás seguro de que deseas eliminar esta tarea?')">Elimnar Tarea</a>
+                        <li class="list-group-item text-card pl-2 pr-2" data-etiqueta="{{ tarea.etiqueta.nombre }}"><h3><b>Titulo:</b> {{tarea.titulo}}</h3></li>
+                        <li class="list-group-item text-card" style="background-color: {{ tarea.etiqueta.nombre|obtener_color_etiqueta }};" data-etiqueta="{{ tarea.etiqueta.nombre }}"><p>Descripción: {{tarea.descripcion}}</p></li>
+                        <li class="list-group-item text-card" style="background-color: {{ tarea.etiqueta.nombre|obtener_color_etiqueta }};" data-etiqueta="{{ tarea.etiqueta.nombre }}"><p>Fecha de Vencimiento: {{tarea.fecha_vencimiento|date:"d/m/Y"}} </p></li>
+                        <li class="list-group-item text-card" style="background-color: {{ tarea.etiqueta.nombre|obtener_color_etiqueta }};" data-etiqueta="{{ tarea.etiqueta.nombre }}"><p>Etiqueta: {{tarea.etiqueta}} </p></li>
+                        <li class="list-group-item text-card" style="background-color: {{ tarea.etiqueta.nombre|obtener_color_etiqueta }};" data-etiqueta="{{ tarea.etiqueta.nombre }}"><p>Estado: {{tarea.estado|capfirst}}</p></li>
+                        <li class="list-group-item text-card" style="background-color: {{ tarea.etiqueta.nombre|obtener_color_etiqueta }};" data-etiqueta="{{ tarea.etiqueta.nombre }}">
+                            <p><b>Observaciones:</b> 
+                                {% for observacion in tarea.observacion_set.all %}
+                                    Creado en: {{ observacion.fecha_creacion|date:"d/m/Y"}}
+                                    {{ observacion.contenido|linebreaks }} 
+                                    <hr>
+                                {% endfor %}
+                            </p>
+                        </li>
+                        <li class="list-group-item text-card" style="background-color: {{ tarea.etiqueta.nombre|obtener_color_etiqueta }};" data-etiqueta="{{ tarea.etiqueta.nombre }}"><p>Prioridad: {{tarea.prioridad}} </p></li>
+                        <li class="list-group-item text-card textarea-responsive" style="background-color: {{ tarea.etiqueta.nombre|obtener_color_etiqueta }};" data-etiqueta="{{ tarea.etiqueta.nombre }}">
+                            <form method="post" action="{% url "crear_observacion" tarea.id %}">
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    <textarea class="textarea-responsive " name="contenido" cols="54" rows="2" placeholder="Agrega tus observaciones aquí"></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary w-100">Agregar Observación</button>
+                            </form>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock content %}

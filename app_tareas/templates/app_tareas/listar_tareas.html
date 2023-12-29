@@ -1,0 +1,44 @@
+{% extends 'app_tareas/base.html' %}
+
+{% block title %}TaskSmart | Tareas pendientes{% endblock title %}
+{% load static %}
+{% load my_filters %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/stilos.css'%}">
+<div class="container">
+    <h1 class="text-center mt-4 mb-4 titulo">Tareas pendientes</h1>
+    <div class="row">
+        <div class="col-12 col-lg-6 container-filtrar">
+            <form action="" method="GET" class="d-flex">
+                <select name="etiqueta" class="form-select mr-2" aria-label="Default select example">
+                    <option value="" class="" selected>Todas las etiquetas</option>
+                    {% for etiqueta in form.etiqueta.field.queryset %}
+                        <option value="{{ etiqueta.pk }}">{{ etiqueta }}</option>
+                    {% endfor %}
+                </select>
+                <button type="submit" class="btn btn-primary btn-filtrar ml-2">Filtrar</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="row">
+        {% for tarea in tareas_pendientes %}
+            <div class="col-sm-12 col-md-6 col-lg-4 mb-3  d-flex " >
+                <div class="card custom-card flex-fill " style="background-color: {{ tarea.etiqueta.nombre|obtener_color_etiqueta }};" >
+                    <ul class="list-group list-group-flush ">
+                        <li class="list-group-item text-card" data-etiqueta="{{ tarea.etiqueta.nombre }}"><h3><b>Titulo:</b> {{tarea.titulo}}</h3></li>
+                        <li class="list-group-item  text-card" style="background-color: {{ tarea.etiqueta.nombre|obtener_color_etiqueta }};" data-etiqueta="{{ tarea.etiqueta.nombre }}"><p><b>Descripción:</b> {{tarea.descripcion}}</p></li>
+                        <li class="list-group-item  text-card" style="background-color: {{ tarea.etiqueta.nombre|obtener_color_etiqueta }};" data-etiqueta="{{ tarea.etiqueta.nombre }}"><p><b>Fecha de Vencimiento:</b> {{tarea.fecha_vencimiento|date:"d/m/Y"}} </p></li>
+                        <li class="list-group-item  text-card" style="background-color: {{ tarea.etiqueta.nombre|obtener_color_etiqueta }};" data-etiqueta="{{ tarea.etiqueta.nombre }}"><p><b>Etiqueta:</b> {{tarea.etiqueta}} </p></li>
+                        <li class="list-group-item  text-card" style="background-color: {{ tarea.etiqueta.nombre|obtener_color_etiqueta }};" data-etiqueta="{{ tarea.etiqueta.nombre }}"><p><b>Estado:</b> {{tarea.estado}}</p></li>
+                        <li class="list-group-item  text-card" style="background-color: {{ tarea.etiqueta.nombre|obtener_color_etiqueta }};" data-etiqueta="{{ tarea.etiqueta.nombre }}"><p><b>Observaciones:</b> {{tarea.observaciones}}</p></li>
+                        <li class="list-group-item  text-card" style="background-color: {{ tarea.etiqueta.nombre|obtener_color_etiqueta }};" data-etiqueta="{{ tarea.etiqueta.nombre }}"><p><b>Prioridad:</b> {{tarea.prioridad}} </p></li>
+                    </ul>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+{% endblock content %}

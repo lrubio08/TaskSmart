@@ -1,0 +1,341 @@
+/*Body*/
+
+body {
+    background-color:#F8F0E5 ;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+a{
+    text-decoration: none;
+}
+
+li{
+    list-style: none;
+}
+
+
+/*barra de navegación*/
+nav{
+    background-image:linear-gradient(to right, rgba(57, 119, 242, 0.8) 0%, 22.327790973871732%, rgba(149, 145, 242, 0.8) 52.01900237529691%, 76.95961995249405%, rgba(18, 27, 218, 0.8) 100%);
+    color: white;
+}
+
+
+
+.navbar-nav {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    font-style: italic;
+    font-family: '"Crimson Text", serif';
+    letter-spacing: 2px;
+}
+
+
+/* Logo */
+.logo{
+    width: 70px;
+
+}
+.logo-radius{
+    border-radius: 50%;
+}
+
+
+/*index | imagen principal*/
+.img-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.imagen-principal{
+    width: 90%;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2) ;
+}
+
+/*Index | Textos*/
+
+.titulo{
+    margin: 20px;
+    color: #1c2273;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-style: italic;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.subtitulo{
+    font-style: italic;
+    font-family: "Crimson Text", serif;
+    color: #1c2273;
+}
+
+.caracteristicas{
+    color: #f12c39;
+    font-style: italic;
+    font-family: "Crimson Text", serif;
+    letter-spacing: 1px;
+}
+
+li{
+    font-family:'Roboto', sans-serif ;
+    font-size: 18px;
+    line-height: 1.55;
+}
+.titulo-li{
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    letter-spacing: 1px;
+    color: #1c2273;
+}
+
+.destacado{
+    font-size: 1.2em;
+    font-weight: bold;
+    text-align: center;
+    color: #3441f3;
+    padding: 20px;
+    margin: 25px;
+    background-color: #f9faf8;
+    border-radius: 5px;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2) ;
+}
+.destacado:hover{
+    background-color:#e9ecef ;
+    cursor: pointer;
+}
+
+/*Index | botones*/
+.btn-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.btn-inicio{
+    background-color:#4CAf50;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    font-size: 16px;
+    margin-bottom: 20px;
+    width: 60%;
+    cursor: pointer;
+    border-radius: 12px;
+    transition-duration: 0.4s ;
+}
+
+.btn-inicio:hover{
+    background-color: white;
+    color: black;
+}
+
+/*Registro*/
+
+.form-registro{
+    border-radius: 0 !important;
+    margin-top: 15px;
+    border-right: 2px solid #1c2273;
+    border-bottom: 2px solid #1c2273;
+}
+
+.btn-registro{
+    margin-bottom: 15px;
+}
+
+.img-registro-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.img-registro{
+    border-radius: 5px;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2) ;
+}
+
+.errorlist{
+    list-style-type: none;
+    color: red;  /* Cambia el color del texto a rojo */
+    font-size: 1.2em;  /* Aumenta el tamaño de la fuente */
+    background-color: #f8d7da;  /* Añade un fondo de color */
+    border-color: #f5c6cb;
+    padding: .75rem 1.25rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+}
+
+/*registro- exitoso*/
+.btn-gmail{
+    width: 300px;
+    height: 70px;
+    font-size: 30px;
+    font-family: "Crimson Text", serif;
+    margin-bottom: 1rem;
+    background-color: #4CAf50;
+    border: none !important;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2)
+}
+
+.btn-gmail:hover{
+    background-color: white;
+    color: black;
+}
+
+.container-texto{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2)
+}
+
+/*Listar-tareas*/
+.container-agregar-tarea{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.form-select{
+    width: 40%;
+    margin: 15px 15px 15px 0;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2)
+}
+
+.btn-filtrar{
+    margin: 15px;
+    width: 30%;
+    font-size: 20px;
+    background-color: #b7d0d1;
+    border: none !important;
+    color: black;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2)
+}
+
+.btn-filtrar:hover{
+    background-color: white;
+
+}
+
+
+/*Tarjetas*/
+
+.custom-card{
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+
+}
+
+
+.custom-card ul .text-card{
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-style: italic;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+[data-etiqueta="Hogar"] {
+    background-color:#9D7CA6;
+}
+
+[data-etiqueta="Hogar"] {
+    color:black  !important;
+}
+
+[data-etiqueta="Personal"] {
+    background-color:#A69B7C;
+}
+
+[data-etiqueta="Personal"] {
+    color: black !important;
+}
+
+[data-etiqueta="Trabajo"] {
+    background-color:#5E667D;
+}
+
+[data-etiqueta="Trabajo"] {
+    color:black !important;
+}
+
+[data-etiqueta="Estudio"] {
+    background-color: #7CA68E;
+}
+
+[data-etiqueta="Estudio"] {
+    color: black !important;
+}
+
+/*textarea observaciones */
+
+.textarea-responsive  {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    margin: 0;
+}
+
+/*Formulario de creación y edición de tareas*/
+
+.custom-form-group{
+    display: inline-block;
+    margin: 20px 5px 20px 0 ;
+}
+.form-label, .text-label{
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-style: italic;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin-bottom: 0 !important;
+}
+.form-creacion{
+    border-radius: 0 !important;
+    border-right: 2px solid #1c2273;
+    border-bottom: 2px solid #1c2273;
+}
+
+
+
+.custom-table {
+    border-radius: 15px;
+    background-color: rgb(216, 72, 72);
+}
+
+/*Ver Tareas | etiquetas*/
+.etiqueta-estudio{
+    background-color: blue;
+}
+
+
+/*Foooter*/
+footer{
+    background-image:linear-gradient(to right, rgba(57, 119, 242, 0.8) 0%, 22.327790973871732%, rgba(149, 145, 242, 0.8) 52.01900237529691%, 76.95961995249405%, rgba(18, 27, 218, 0.8) 100%);
+    margin-top: auto;
+}
+
+.custom-text-nav-footer{
+    font-style: italic;
+    color: #010433;
+    font-family: '"Crimson Text", serif';
+    letter-spacing: 2px;
+    margin: 1rem;
+}
+
+
+
+
+.text-footer p{
+    font-size: 18px;
+}
+
+.footer-column{
+    padding: 0 20px;
+}

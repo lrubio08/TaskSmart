@@ -1,0 +1,37 @@
+{% extends 'app_tareas/base.html' %}
+
+{% block title %}TaskSmart | Login {% endblock title %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/stilos.css'%}">
+<div class="container ">
+    <h1 class="text-center  titulo">Inicia sesión</h1>
+    <div class="row  justify-content-center ">
+        <div class="col-6">
+            <form class="inicio-sesion" method="POST" action="{% url 'iniciar_sesion' %}">
+                {% csrf_token %}
+                {% if messages %}
+                    <ul class="messages errorlist">
+                        {% for message in messages %}
+                            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+                <div class="mb-3">
+                    <input type="texto" name="username" class="form-control form-registro" placeholder="Ingresa tu nombre de usuario">
+                </div>
+                <div class="mb-3">
+                    <input type="password" name="password" class="form-control form-registro" id="pass1" placeholder="Ingresa tu contraseña">
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input" id="showPasswordCheckbox">
+                        <label class="form-check-label" for="exampleChek1">Ver contraseña</label>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary w-100 mb-2" >Iniciar Sesión</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}

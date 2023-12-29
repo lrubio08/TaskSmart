@@ -1,0 +1,20 @@
+{% extends 'app_tareas/base.html' %}
+
+{% block title %}TaskSmart{% endblock title %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/stilos.css'%}">
+
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-lg-6 container-texto">
+            <h1 class="titulo">¡Tu registro a sido exitoso, por favor confirma tu correo!</h1>
+        </div>
+        <div class="col-12 col-lg-6 d-flex align-items-center justify-content-center">
+            <a href="https://mail.google.com/" target="_blank">
+                <button class="btn btn-primary btn-gmail">Ir a Gmail</button>
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock content %}

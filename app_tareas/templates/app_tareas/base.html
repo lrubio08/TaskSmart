@@ -1,0 +1,128 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--Boostrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+
+    <!--iconos-->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <!--CSS-->
+    
+    <link rel="stylesheet" href="{% static 'css/stilos.css' %}">
+    
+    <title>{%block title%}TaskSmart {%endblock%}</title>
+</head>
+
+<body>
+    <!--La barra de navegacion se repetira en todas las paginas del sitio-->
+    <nav class="navbar navbar-expand-lg ">
+        <div class="container container-nav">
+            <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse " id="navbarText">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
+                    <li class="nav-item">
+                        <a class="nav-link active custom-text-nav-footer" aria-current="page" href="{%url 'index'%}">Inicio</a>
+                    </li>
+                        
+                    {% if user.is_authenticated %}
+                        <li class="nav-item d-flex ">
+                            <a class="nav-link custom-text-nav-footer" href="{%url 'listar_tareas' %}">Tareas pendientes</a>
+                        </li>
+                        <li class="nav-item d-flex ">
+                            <a class="nav-link custom-text-nav-footer" href="{%url 'ver_tarea'   %}">Gestionar tareas</a>
+                        </li>
+                        <li class="nav-item d-flex ">
+                            <a href="{% url 'crear_tarea'%}" class="nav-link custom-text-nav-footer">Creación de Tarea</a>
+                        </li>
+                        <li class="nav-item d-flex ">
+                            <a class="nav-link custom-text-nav-footer" href="{%url 'cerrar_sesion' %}">Cerrar Sesión</a>
+                        </li>
+                        {% else %}
+                            <!-- El usuario no ha iniciado sesión, mostramos el botón "Iniciar Sesión" -->
+                            <li class="nav-item">
+                                <a class="nav-link  custom-text-nav-footer" href="{% url 'iniciar_sesion' %}">Inicia Sesión</a>
+                            </li>
+                            <li>
+                                <a class="nav-link custom-text-nav-footer" href="{% url 'registrarse'%}">Registrarse</a>
+                            </li>
+                    {% endif %}
+                </ul>
+            </div>
+            <span class="navbar-text text-light">
+                <a class="navbar-brand custom-text-nav-footer " href="{%url 'index'%}"><img class="logo-radius logo" src="{%static 'imagenes/logo.png'%}" alt=""></a>
+            </span>
+        </div>
+    </nav>
+
+    {%block content%}
+
+    <!--bloque de contenido variable en las distintas paginas del sitio-->
+    {%endblock%}
+
+    <!--el Footer se repetira en todas las paginas del sitio-->
+    <footer >
+            <div class="container">
+                <div class="row custom-text-nav-footer ">
+                    <div class="list-group footer-column col-12 col-lg-4 ml-2">
+                        <h3 class=" mt-2">Enlaces</h3>
+                        <hr class="">
+                        <p class="" >
+                            Visita mi portafolio
+                            <a target="blank" href="https://luis-rubio-dev-cbc12d1cc45e.herokuapp.com/">
+                                <img src="{% static "imagenes/enlace.png" %}" alt="">
+                            </a>
+                        </p>
+                        <p class="">
+                            GitHub
+                            <a target="blank" href="https://github.com/lrubio08">
+                                <img src="{% static "imagenes/github.png" %}" alt="">
+                            </a>
+                        </p>
+                    </div>
+                    <div class="list-group footer-column col-12 col-lg-4 ">
+                        <h3 class=" mt-2">Contacto</h3>
+                        <hr class="">
+                        <p class="">
+                            Contactame por correo: 
+                            <a href="mailto:&#x6c;&#x72;&#x75;&#x62;&#x69;&#x6f;&#x31;&#x31;&#x37;&#x39;&#x40;&#x67;&#x6d;&#x61;&#x69;&#x6c;&#x2e;&#x63;&#x6f;&#x6d;" target="blank">
+                                <img class="ml-2" src="{% static "imagenes/correo.png" %}" alt="">
+                            </a>
+                        </p>
+
+                        <p class=" ">
+                            Contactame por Whatsapp  
+                            <a href="https://wa.me/+56933249303" >
+                                <img class="ml-2" src="{% static "imagenes/whatsapp.png" %}" alt="">
+                            </a>
+                        </p>
+                    </div>
+                    <div class="list-group footer-column col-12 col-lg-4">
+                        <h3 class=" mt-2">Derechos de autor</h3>
+                        <hr class="">
+                        <p class="">Desarollado por: Luis Rubio R.</p>
+                        <p class="">&copy; 2023. Todos los derechos reservados.</p>
+                    </div>
+                </div>
+            </div>
+    </footer>
+
+    <!--Boostrap Script-->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"
+        integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS"
+        crossorigin="anonymous"></script>
+    <!--Scripts js-->
+    <script src="{% static 'js/main.js' %}"></script>
+
+</body>
+
+</html>

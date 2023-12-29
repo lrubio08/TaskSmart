@@ -1,0 +1,69 @@
+{% extends 'app_tareas/base.html' %}
+
+{% block title %}TaskSmart | Home {% endblock title %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/stilos.css'%}">
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="text-center titulo">Organízate con TaskSmart</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 col-lg-6 img-container">
+            <img class="imagen-principal img-fluid rounded mb-4" src="{% static 'imagenes/imagen3.jpg' %}" alt="" >
+        </div>
+        <div class="col-12 col-lg-6">
+            <h2 class="subtitulo">Organiza tu vida de manera diferente </h2>
+            <h3 class="caracteristicas">Caracteristicas claves:</h3>
+            <ul>
+                <li>
+                    <strong class="titulo-li">
+                        Agregar tareas:
+                    </strong>
+                        Puedes agregar fácilmente nuevas tareas a tu lista. Cada tarea puede tener un titulo, una descripción y una fecha de vencimiento 
+                </li>
+                <li>
+                    <strong class="titulo-li">
+                        Editar tareas:
+                    </strong>
+                    ¿Necesitas hacer un cambio? No hay problema. Puedes editar tus tareas en cualquier momento.
+                </li>
+                <li>
+                    <strong class="titulo-li">
+                        Eliminar tareas:
+                    </strong>
+                    Si una tarea ya no es relevante, puedes eliminarla con un solo clic.
+                </li>
+                <li>
+                    <strong class="titulo-li">
+                        Marcar tareas como completadas:
+                    </strong>
+                    Cuando completes una tarea, puedes marcarla como completada. Esto te ayudará a llevar un registro de tus logros.
+                </li>
+                <li>
+                    <strong class="titulo-li">
+                        Agregar observaciones:
+                    </strong>
+                    Para cada tarea, puedes agregar observaciones adicionales. Esto puede ser útil para detalles adicionales o para llevar un registro de tu progreso.
+                </li>
+            </ul>
+            
+            
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <p class="destacado">Nuestra aplicación es intuitiva y fácil de usar. <br>  ¡Te invitamos a probarla y a experimentar la satisfacción de tener tus tareas organizadas y bajo control!</p>
+        </div>
+        <div class="col-12 col-md-6  btn-container">
+            <a href="{% url 'iniciar_sesion' %}" class="btn btn-primary btn-inicio">Iniciar Sesión</a>
+        </div>
+        <div class="col-12 col-md-6  btn-container">
+            <a href="{% url 'registrarse' %}" class="btn btn-primary btn-inicio">Registrate</a>
+        </div>
+    </div>
+</div>
+{% endblock content %}
