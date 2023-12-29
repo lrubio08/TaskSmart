@@ -24,11 +24,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-w$@i^uovv$7@w!_po_r5jevf^1^nsev+$y_4nwi&(*4ift_uzf'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 # Configuraciones de seguridad
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['task-smart.herokuapp.com']
 
 
 # Application definition
@@ -77,17 +77,27 @@ WSGI_APPLICATION = 'proyecto_tareas.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'Tareas',
-        'USER' : config('USER'),
-        'PASSWORD':config('PASSWORD'),
-        'HOST' : 'localhost',
-        'DATABASE_PORT': '5432'
-        
+
+import dj_database_url
+
+if os.environ.get('HEROKU'):
+    DATABASES = {
+        'default': dj_database_url.config(
+            default=os.environ.get('DATABASE_URL')
+        )
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': 'Tareas',
+            'USER' : config('USER'),
+            'PASSWORD':config('PASSWORD'),
+            'HOST' : 'localhost',
+            'DATABASE_PORT': '5432'
+            
+        }
+    }
 
 
 # Password validation
@@ -141,3 +151,7 @@ EMAIL_PORT = config('EMAIL_PORT', cast=int)
 EMAIL_USE_TLS = config('EMAIL_USE_TLS', cast=bool)
 EMAIL_HOST_USER = config('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD =config('EMAIL_HOST_PASSWORD')
+
+# heroku
+import django_heroku
+django_heroku.settings(locals())
