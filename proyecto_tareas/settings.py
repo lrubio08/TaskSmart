@@ -28,7 +28,7 @@ DEBUG = False
 
 # Configuraciones de seguridad
 
-ALLOWED_HOSTS = ['task-smart.herokuapp.com']
+ALLOWED_HOSTS = ['tasksamrt.luisrubiodev.cl', '127.0.0.1', 'localhost', '46.202.150.5']
 
 
 # Application definition
@@ -52,6 +52,12 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+CSRF_TRUSTED_ORIGINS = ['https://tasksamrt.luisrubiodev.cl']
+
+SECURE_BROWSER_XSS_FILTER = True
+SECURE_CONTENT_TYPE_NOSNIFF = True
+
 
 ROOT_URLCONF = 'proyecto_tareas.urls'
 
@@ -80,24 +86,17 @@ WSGI_APPLICATION = 'proyecto_tareas.wsgi.application'
 
 import dj_database_url
 
-if os.environ.get('HEROKU'):
-    DATABASES = {
-        'default': dj_database_url.config(
-            default=os.environ.get('DATABASE_URL')
-        )
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': config('DB_NAME'),
+        'USER': config('DB_USER'),
+        'PASSWORD': config('DB_PASSWORD'),
+        'HOST': config('DB_HOST', default='localhost'),
+        'PORT': config('DB_PORT', default='3306'),
     }
-else:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': 'Tareas',
-            'USER' : config('USER'),
-            'PASSWORD':config('PASSWORD'),
-            'HOST' : 'localhost',
-            'DATABASE_PORT': '5432'
-            
-        }
-    }
+}
+
 
 
 # Password validation
@@ -137,6 +136,7 @@ import os
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
@@ -144,14 +144,3 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'auth.User'
 
-# Configuración de Gmail, con variables de entorno 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = config('EMAIL_HOST')
-EMAIL_PORT = config('EMAIL_PORT', cast=int)
-EMAIL_USE_TLS = config('EMAIL_USE_TLS', cast=bool)
-EMAIL_HOST_USER = config('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD =config('EMAIL_HOST_PASSWORD')
-
-# heroku
-import django_heroku
-django_heroku.settings(locals())

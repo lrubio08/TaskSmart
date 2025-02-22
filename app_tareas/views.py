@@ -15,52 +15,23 @@ from email.mime.text import MIMEText
 def index (request):
     return render (request, 'app_tareas/index.html')
 
-# evnio de correos 
-def enviar_correo(user, asunto, mensaje):
-    remitente = settings.EMAIL_HOST_USER
-    destinatario = [user.email]
-    
-    try:            
-        with smtplib.SMTP_SSL(settings.EMAIL_HOST, settings.EMAIL_PORT, context=ssl.SSLContext(ssl.PROTOCOL_TLS)) as smtp:
-            smtp.login(remitente,settings.EMAIL_HOST_PASSWORD)
-            email = MIMEMultipart()
-            email["From"] =remitente
-            email ["To"] = ", ".join (destinatario)
-            email["Subject"] = asunto
-            # Adjunta el texto del correo
-            email.attach(MIMEText(mensaje, "html"))
-            
-            smtp.send_message(email)
-        return True
-    except Exception as e:
-        return False
 
-def registrarse(request):
-    if request.method == 'POST':
-        form = RegistroForm(request.POST)
-        if form.is_valid():
-            user = form.save(commit=False)
-            form.save()
-                        # enviar correo una vez que el registro es exitoso.
-            asunto = f"Confirmación de registro TaskSmart"
-            mensaje = f"""
-                        <html>
-                        <body>
-                            <p style="color:black; font-family: Arial, sans-serif;">Bienvenido {user.first_name} {user.last_name} a TaskSmart, su registro ha sido exitoso.<br>
-                            <a style="color:blue; font-size:16px;" href='http://localhost:8000/index/iniciar_sesion'>Confirmar Registro </a></p>
-                        </body>
-                        </html>
-                    """
-            
-            envio_exitoso = enviar_correo(user, asunto, mensaje)
-            if envio_exitoso:
-                return redirect('registro_exitoso')
-            else:
-                error_message = "Error al enviar el correo de confirmación. Por favor, inténtalo de nuevo."
-            return render(request, 'app_tareas/registrarse.html', {'form': form, 'error_message': error_message})
-    else:
-        form = RegistroForm()
-    return render(request, 'app_tareas/registrarse.html', {'form': form})
+def registro(request):
+    try:
+        if request.method == 'POST':
+            print(f"Datos POST recibidos: {request.POST}")
+            form = RegistroForm(request.POST)
+            if form.is_valid():
+                user = form.save()
+                print(user)
+                messages.success(request, 'Te has registrado exitosamente. Ahora puedes iniciar sesión.')
+                return redirect('iniciar_sesion')
+        else:
+            form = RegistroForm()
+        return render(request, 'app_tareas/registro.html', {'form': form})
+    except Exception as e:
+        print(f"Error en la vista de registro: {e}")
+        raise
 
 def registro_exitoso(request):
     return render(request, 'app_tareas/registro_exitoso.html')
