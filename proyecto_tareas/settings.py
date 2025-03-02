@@ -28,7 +28,7 @@ DEBUG = False
 
 # Configuraciones de seguridad
 
-ALLOWED_HOSTS = ['tasksamrt.luisrubiodev.cl', '127.0.0.1', 'localhost', '46.202.150.5']
+ALLOWED_HOSTS = ['tasksmart.luisrubiodev.cl', '127.0.0.1', 'localhost', '46.202.150.5']
 
 
 # Application definition
@@ -53,7 +53,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-CSRF_TRUSTED_ORIGINS = ['https://tasksamrt.luisrubiodev.cl']
+CSRF_TRUSTED_ORIGINS = ['http://tasksmart.luisrubiodev.cl', 'https://tasksmart.luisrubiodev.cl']
 
 SECURE_BROWSER_XSS_FILTER = True
 SECURE_CONTENT_TYPE_NOSNIFF = True
