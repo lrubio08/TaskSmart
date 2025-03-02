@@ -21,7 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-w$@i^uovv$7@w!_po_r5jevf^1^nsev+$y_4nwi&(*4ift_uzf'
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -79,12 +79,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'proyecto_tareas.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-
-
-import dj_database_url
 
 DATABASES = {
     'default': {
@@ -96,8 +92,6 @@ DATABASES = {
         'PORT': config('DB_PORT', default='3306'),
     }
 }
-
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
