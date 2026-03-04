@@ -79,12 +79,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'proyecto_tareas.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-
-
-import dj_database_url
 
 DATABASES = {
     'default': {
@@ -96,8 +92,6 @@ DATABASES = {
         'PORT': config('DB_PORT', default='3306'),
     }
 }
-
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
