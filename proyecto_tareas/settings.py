@@ -21,14 +21,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-w$@i^uovv$7@w!_po_r5jevf^1^nsev+$y_4nwi&(*4ift_uzf'
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
 # Configuraciones de seguridad
 
-ALLOWED_HOSTS = ['tasksamrt.luisrubiodev.cl', '127.0.0.1', 'localhost', '46.202.150.5']
+ALLOWED_HOSTS = ['tasksamrt.luisrubiodev.tech', '127.0.0.1', 'localhost', '46.202.150.5']
 
 
 # Application definition
@@ -53,7 +53,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-CSRF_TRUSTED_ORIGINS = ['https://tasksamrt.luisrubiodev.cl']
+CSRF_TRUSTED_ORIGINS = ['https://tasksamrt.luisrubiodev.tech']
 
 SECURE_BROWSER_XSS_FILTER = True
 SECURE_CONTENT_TYPE_NOSNIFF = True
@@ -143,4 +143,13 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'auth.User'
+
+# Configuración de correo con Zoho
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.zoho.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+DEFAULT_FROM_EMAIL = 'Luis Rubio Dev <luisdev@luisrubiodev.tech>'
 
