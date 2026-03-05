@@ -24,11 +24,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
+
 
 # Configuraciones de seguridad
 
-ALLOWED_HOSTS = ['tasksamrt.luisrubiodev.tech', '127.0.0.1', 'localhost', '46.202.150.5']
+ALLOWED_HOSTS = ['tasksmart.luisrubiodev.tech', '146.190.120.160', '127.0.0.1', 'localhost', '46.202.150.5']
 
 
 # Application definition
@@ -53,7 +54,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-CSRF_TRUSTED_ORIGINS = ['https://tasksamrt.luisrubiodev.tech']
+CSRF_TRUSTED_ORIGINS = ['https://tasksmart.luisrubiodev.tech']
 
 SECURE_BROWSER_XSS_FILTER = True
 SECURE_CONTENT_TYPE_NOSNIFF = True
