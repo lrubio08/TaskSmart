@@ -12,7 +12,7 @@ venv/
 .env
 
 # Settings de desarrollo (contiene credenciales)
-settings/development.py
+proyecto_tareas/settings/development.py
 
 # Otros archivos y directorios a ignorar
 *.bak
