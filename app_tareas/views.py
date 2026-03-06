@@ -4,12 +4,7 @@ from django.contrib.auth import authenticate, login, logout
 from .models import Etiqueta, Tarea, Prioridad
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
-import ssl
-import smtplib
-from django.conf import settings
-from email.mime.multipart import MIMEMultipart
 from .forms import ObservacionForm, RegistroForm, TareaForm, FiltroTareasForm
-from email.mime.text import MIMEText
 from django.contrib.auth.models import User
 from django.utils.http import urlsafe_base64_decode
 from django.utils.encoding import force_str
