@@ -10,6 +10,10 @@ from django.conf import settings
 from email.mime.multipart import MIMEMultipart
 from .forms import ObservacionForm, RegistroForm, TareaForm, FiltroTareasForm
 from email.mime.text import MIMEText
+from django.contrib.auth.models import User
+from django.utils.http import urlsafe_base64_decode
+from django.utils.encoding import force_str
+from .utils import token_activacion, enviar_correo_activacion
 
 # Create your views here.
 def index (request):
@@ -19,19 +23,36 @@ def index (request):
 def registro(request):
     try:
         if request.method == 'POST':
-            print(f"Datos POST recibidos: {request.POST}")
             form = RegistroForm(request.POST)
             if form.is_valid():
-                user = form.save()
-                print(user)
-                messages.success(request, 'Te has registrado exitosamente. Ahora puedes iniciar sesión.')
-                return redirect('iniciar_sesion')
+                user = form.save(commit=False)
+                user.is_active = False  # cuenta inactiva hasta verificar correo
+                user.save()
+                enviar_correo_activacion(request, user)
+                return redirect('registro_exitoso')
         else:
             form = RegistroForm()
         return render(request, 'app_tareas/registro.html', {'form': form})
     except Exception as e:
         print(f"Error en la vista de registro: {e}")
         raise
+
+
+def activar_cuenta(request, uidb64, token):
+    try:
+        uid = force_str(urlsafe_base64_decode(uidb64))
+        user = User.objects.get(pk=uid)
+    except (TypeError, ValueError, OverflowError, User.DoesNotExist):
+        user = None
+
+    if user is not None and token_activacion.check_token(user, token):
+        user.is_active = True
+        user.save()
+        messages.success(request, '¡Tu cuenta ha sido activada! Ahora puedes iniciar sesión.')
+        return redirect('iniciar_sesion')
+    else:
+        messages.error(request, 'El link de activación no es válido o ha expirado.')
+        return redirect('registro')
 
 def registro_exitoso(request):
     return render(request, 'app_tareas/registro_exitoso.html')

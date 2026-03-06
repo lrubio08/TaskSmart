@@ -14,4 +14,5 @@ urlpatterns = [
     path('completar_tarea/<int:tarea_id>', views.completar_tarea, name='completar_tarea'),
     path('editar_tarea/<int:tarea_id>/', views.editar_tarea, name='editar_tarea'),
     path('crear_observacion/<int:tarea_id>/', views.crear_observacion, name='crear_observacion'),
+    path('activar/<uidb64>/<token>/', views.activar_cuenta, name='activar_cuenta'),
 ]

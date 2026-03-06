@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+</head>
+
+<body style="font-family: Arial, sans-serif; background-color: #f4f4f4; padding: 20px;">
+    <div style="max-width: 500px; margin: auto; background-color: #ffffff; border-radius: 8px; padding: 30px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+
+        <h2 style="color: #4A90D9; text-align: center;">¡Bienvenido a TaskSmart!</h2>
+
+        <p style="color: #333333;">Hola <strong>{{ user.first_name }} {{ user.last_name }}</strong>,</p>
+
+        <p style="color: #333333;">Gracias por registrarte. Por favor activa tu cuenta haciendo clic en el botón:</p>
+
+        <div style="text-align: center; margin: 30px 0;">
+            <a href="{{ activacion_url }}" style="background-color: #4A90D9; color: #ffffff; padding: 12px 30px; border-radius: 5px; text-decoration: none; font-size: 16px;">
+                Activar cuenta
+            </a>
+        </div>
+
+        <p style="color: #999999; font-size: 12px;">Si no te registraste en TaskSmart, ignora este correo.</p>
+
+        <hr style="border: none; border-top: 1px solid #eeeeee;">
+        <p style="color: #999999; font-size: 12px; text-align: center;">TaskSmart</p>
+
+    </div>
+</body>
+
+</html>
