@@ -1,14 +1,16 @@
 from django.contrib import messages
-from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib.auth import authenticate, login, logout
-from .models import Etiqueta, Tarea, Prioridad
 from django.contrib.auth.decorators import login_required
-from django.db.models import Q
-from .forms import ObservacionForm, RegistroForm, TareaForm, FiltroTareasForm
 from django.contrib.auth.models import User
-from django.utils.http import urlsafe_base64_decode
+from django.db.models import Q
+from django.shortcuts import get_object_or_404, redirect, render
 from django.utils.encoding import force_str
-from .utils import token_activacion, enviar_correo_activacion
+from django.utils.http import urlsafe_base64_decode
+
+from .forms import FiltroTareasForm, ObservacionForm, RegistroForm, TareaForm
+from .models import Etiqueta, Prioridad, Tarea
+from .utils import enviar_correo_activacion, token_activacion
+
 
 # Create your views here.
 def index (request):
@@ -21,7 +23,7 @@ def registro(request):
             form = RegistroForm(request.POST)
             if form.is_valid():
                 user = form.save(commit=False)
-                user.is_active = False  # cuenta inactiva hasta verificar correo
+                user.is_active = False 
                 user.save()
                 enviar_correo_activacion(request, user)
                 return redirect('registro_exitoso')

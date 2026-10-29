@@ -1,10 +1,11 @@
-from django.contrib.sites.shortcuts import get_current_site
-from django.template.loader import render_to_string
-from django.utils.http import urlsafe_base64_encode
-from django.utils.encoding import force_bytes
-from django.contrib.auth.tokens import PasswordResetTokenGenerator
 import six
+from django.contrib.auth.tokens import PasswordResetTokenGenerator
+from django.contrib.sites.shortcuts import get_current_site
 from django.core.mail import send_mail
+from django.template.loader import render_to_string
+from django.utils.encoding import force_bytes
+from django.utils.http import urlsafe_base64_encode
+
 
 class TokenActivacion(PasswordResetTokenGenerator):
     def _make_hash_value(self, user, timestamp):
@@ -30,9 +31,9 @@ def enviar_correo_activacion(request, user):
     })
     send_mail(
         asunto,
-        '',  # texto plano vacío
+        '',  
         'Luis Rubio Dev <luisdev@luisrubiodev.tech>',
         [user.email],
-        html_message=mensaje,  # 👈 aquí va el HTML
+        html_message=mensaje,  
         fail_silently=False,
     )
