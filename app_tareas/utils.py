@@ -21,11 +21,12 @@ token_activacion = TokenActivacion()
 
 
 def enviar_correo_activacion(request, user):
-    current_site = get_current_site(request)
+    domain = request.get_host() 
+    
     asunto = 'Activa tu cuenta en TaskSmart'
     mensaje = render_to_string('app_tareas/correo_activacion.html', {
         'user': user,
-        'domain': current_site.domain,
+        'domain': domain,
         'uid': urlsafe_base64_encode(force_bytes(user.pk)),
         'token': token_activacion.make_token(user),
     })
