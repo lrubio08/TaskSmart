@@ -86,10 +86,10 @@ python manage.py runserver
 El `Procfile` aplica las migraciones y arranca Gunicorn:
 
 ```
-web: python manage.py migrate --noinput && gunicorn moviplus.wsgi --log-file -
+web: python manage.py migrate --noinput && gunicorn tasksmart.wsgi --log-file -
 ```
 
-Variables de entorno que hay que cargar en Heroku: `DJANGO_SETTINGS_MODULE`, `SECRET_KEY`, `TMDB_API_KEY`, `ALLOWED_HOSTS` y `CSRF_TRUSTED_ORIGINS`.
+Variables de entorno que hay que cargar en Heroku: `DJANGO_SETTINGS_MODULE`, `SECRET_KEY`, `DATABASE_URL`, `ALLOWED_HOSTS`, `CSRF_TRUSTED_ORIGINS`, `EMAIL_HOST_USER`, `EMAIL_HOST_PASSWORD`.
 
 ## Problemas que tuve que resolver
 
