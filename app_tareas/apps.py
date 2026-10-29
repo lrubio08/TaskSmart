@@ -8,16 +8,20 @@ class AppTareasConfig(AppConfig):
     name = 'app_tareas'
 
     def ready(self):
+        # Asegura que el Site esté configurado correctamente al iniciar
         try:
             from django.contrib.sites.models import Site
             domain = 'tasksmart.luisrubiodev.tech' if not settings.DEBUG else '127.0.0.1:8000'
-            
-            Site.objects.update_or_create(
-                id=1,
-                defaults={
-                    'domain': domain,
-                    'name': 'TaskSmart'
-                }
+
+            site, created = Site.objects.get_or_create(
+                domain=domain,
+                defaults={'name': 'TaskSmart'}
             )
+
+            if not created and site.name != 'TaskSmart':
+                site.name = 'TaskSmart'
+                site.save()
+
         except (OperationalError, ProgrammingError):
+
             pass

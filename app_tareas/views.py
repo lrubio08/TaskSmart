@@ -8,7 +8,7 @@ from django.utils.encoding import force_str
 from django.utils.http import urlsafe_base64_decode
 
 from .forms import FiltroTareasForm, ObservacionForm, RegistroForm, TareaForm
-from .models import Etiqueta, Prioridad, Tarea
+from .models import Prioridad, Tarea
 from .utils import enviar_correo_activacion, token_activacion
 
 
